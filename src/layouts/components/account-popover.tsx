@@ -15,6 +15,8 @@ import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import { useRouter, usePathname } from 'src/routes/hooks';
 
 import { _myAccount } from 'src/_mock';
+import { useDispatch } from 'react-redux';
+import { logout } from 'src/redux/auth.reducer';
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +31,7 @@ export type AccountPopoverProps = IconButtonProps & {
 
 export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps) {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const pathname = usePathname();
 
@@ -49,6 +52,12 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
     },
     [handleClosePopover, router]
   );
+
+  // log out handler
+  const handleLogOut = () => {
+    dispatch(logout());
+    router.push("/auth")
+  }
 
   return (
     <>
@@ -129,7 +138,7 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Box sx={{ p: 1 }}>
-          <Button fullWidth color="error" size="medium" variant="text">
+          <Button onClick={handleLogOut} fullWidth color="error" size="medium" variant="text">
             Logout
           </Button>
         </Box>
