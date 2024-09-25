@@ -1,27 +1,27 @@
-import type { Theme, SxProps, Breakpoint } from '@mui/material/styles';
+import type { Breakpoint, SxProps, Theme } from '@mui/material/styles';
 
 import { useState } from 'react';
 
-import Box from '@mui/material/Box';
+import { Avatar } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 
-import { _langs, _notifications } from 'src/_mock';
+import { _langs, _myAccount, _notifications } from 'src/_mock';
 
 import { Iconify } from 'src/components/iconify';
 
-import { Main } from './main';
 import { layoutClasses } from '../classes';
-import { NavMobile, NavDesktop } from './nav';
-import { navData } from '../config-nav-dashboard';
-import { Searchbar } from '../components/searchbar';
-import { _workspaces } from '../config-nav-workspace';
-import { MenuButton } from '../components/menu-button';
-import { LayoutSection } from '../core/layout-section';
-import { HeaderSection } from '../core/header-section';
 import { AccountPopover } from '../components/account-popover';
 import { LanguagePopover } from '../components/language-popover';
+import { MenuButton } from '../components/menu-button';
 import { NotificationsPopover } from '../components/notifications-popover';
+import { Searchbar } from '../components/searchbar';
+import { navData } from '../config-nav-dashboard';
+import { HeaderSection } from '../core/header-section';
+import { LayoutSection } from '../core/layout-section';
+import { Main } from './main';
+import { NavDesktop, NavMobile } from './nav';
 
 // ----------------------------------------------------------------------
 
@@ -54,7 +54,9 @@ export function DashboardLayout({ sx, children, header }: DashboardLayoutProps) 
               sx: { px: { [layoutQuery]: 5 } },
             },
           }}
-          sx={header?.sx}
+          sx={{
+            ...header?.sx,
+          }}
           slots={{
             topArea: (
               <Alert severity="info" sx={{ display: 'none', borderRadius: 0 }}>
@@ -70,12 +72,7 @@ export function DashboardLayout({ sx, children, header }: DashboardLayoutProps) 
                     [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
                   }}
                 />
-                <NavMobile
-                  data={navData}
-                  open={navOpen}
-                  onClose={() => setNavOpen(false)}
-                  workspaces={_workspaces}
-                />
+                <NavMobile data={navData} open={navOpen} onClose={() => setNavOpen(false)} />
               </>
             ),
             rightArea: (
@@ -111,7 +108,34 @@ export function DashboardLayout({ sx, children, header }: DashboardLayoutProps) 
        * Sidebar
        *************************************** */
       sidebarSection={
-        <NavDesktop data={navData} layoutQuery={layoutQuery} workspaces={_workspaces} />
+        <NavDesktop
+          data={navData}
+          layoutQuery={layoutQuery}
+          slots={{
+            topArea: (
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  mb: 6,
+                }}
+              >
+                <Avatar
+                  src={_myAccount.photoURL}
+                  alt={_myAccount.displayName}
+                  sx={{
+                    height: '100px',
+                    width: '100px',
+                    boxShadow: '3px 3px 3px #ebebeb',
+                  }}
+                >
+                  {_myAccount.displayName.charAt(0).toUpperCase()}
+                </Avatar>
+              </Box>
+            ),
+          }}
+        />
       }
       /** **************************************
        * Footer
