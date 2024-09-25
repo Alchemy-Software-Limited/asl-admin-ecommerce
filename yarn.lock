@@ -2152,6 +2152,7 @@ __metadata:
     "@fontsource/poppins": "npm:^5.0.8"
     "@fontsource/roboto": "npm:^5.0.8"
     "@iconify/react": "npm:^5.0.2"
+    "@mui/icons-material": "npm:^6.1.1"
     "@mui/lab": "npm:^5.0.0-alpha.173"
     "@mui/material": "npm:^5.16.7"
     "@mui/system": "npm:^5.15.9"
@@ -2262,6 +2263,22 @@ __metadata:
   version: 5.16.7
   resolution: "@mui/core-downloads-tracker@npm:5.16.7"
   checksum: 10c0/4644c850160d01232c1abdbed141e4fa70e155891a9c68f0c2cc3054b4a3cdc1d28cf2d6665366fd8c725b2b091db677e11831552889a4e4e14f1e44450cf654
+  languageName: node
+  linkType: hard
+
+"@mui/icons-material@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "@mui/icons-material@npm:6.1.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.25.6"
+  peerDependencies:
+    "@mui/material": ^6.1.1
+    "@types/react": ^17.0.0 || ^18.0.0 || ^19.0.0
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/fc9f468ebf7ee9238606c915b648a4ba461d1ff241926131cd0de173d9092d8be6b2dc84a9d1bd8abcc6a349793e5501bd9d90487af7e946395a9b5ff104d498
   languageName: node
   linkType: hard
 
